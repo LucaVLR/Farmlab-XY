@@ -4,4 +4,4 @@ Farmlab_XY_Test1 => Met dit programma is het aansturen van XY systeem door midde
 
 tmc_test => Met dit programma is de basisfunctie van 1 TMC2009 stepper driver uitgetest.
 
-TMC_NodeRED => Met dit programma is het aansturen van de twee TMC2209 stepper drivers door middel van [een NodeRED dashboard](repo/blob/master/NodeRED/XY_Controller.json) met MQTT uitgetest.
+TMC_NodeRED => Met dit programma is het aansturen van de twee TMC2209 stepper drivers door middel van [een NodeRED dashboard](Farmlab-XY/blob/master/NodeRED/XY_Controller.json) met MQTT uitgetest.
