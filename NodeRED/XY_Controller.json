@@ -1,0 +1,312 @@
+[
+    {
+        "id": "3a686453b7c0cf57",
+        "type": "tab",
+        "label": "XY Controller",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "fabf9dc8730f4ae6",
+        "type": "ui_button",
+        "z": "3a686453b7c0cf57",
+        "name": "Up",
+        "group": "91c9836a.83f4e8",
+        "order": 2,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-arrow-up fa-4x",
+        "payload": "10000",
+        "payloadType": "num",
+        "topic": "/MCU/UP",
+        "topicType": "str",
+        "x": 90,
+        "y": 1000,
+        "wires": [
+            [
+                "c1b46e5801559b3d"
+            ]
+        ]
+    },
+    {
+        "id": "71f7c67d6458b768",
+        "type": "ui_button",
+        "z": "3a686453b7c0cf57",
+        "name": "Down",
+        "group": "91c9836a.83f4e8",
+        "order": 10,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-arrow-down fa-4x",
+        "payload": "100",
+        "payloadType": "str",
+        "topic": "/MCU/DOWN",
+        "topicType": "str",
+        "x": 90,
+        "y": 1060,
+        "wires": [
+            [
+                "c1b46e5801559b3d"
+            ]
+        ]
+    },
+    {
+        "id": "d44b24fa44e530ad",
+        "type": "ui_button",
+        "z": "3a686453b7c0cf57",
+        "name": "Left",
+        "group": "91c9836a.83f4e8",
+        "order": 6,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-arrow-left fa-4x",
+        "payload": "100",
+        "payloadType": "str",
+        "topic": "/MCU/LEFT",
+        "topicType": "str",
+        "x": 90,
+        "y": 1120,
+        "wires": [
+            [
+                "c1b46e5801559b3d"
+            ]
+        ]
+    },
+    {
+        "id": "bb4f7931d0d33114",
+        "type": "ui_button",
+        "z": "3a686453b7c0cf57",
+        "name": "Right",
+        "group": "91c9836a.83f4e8",
+        "order": 8,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-arrow-right fa-4x",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "/MCU/RIGHT",
+        "topicType": "str",
+        "x": 90,
+        "y": 1180,
+        "wires": [
+            [
+                "c1b46e5801559b3d"
+            ]
+        ]
+    },
+    {
+        "id": "d67082dd71428597",
+        "type": "mqtt out",
+        "z": "3a686453b7c0cf57",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "6be8ec108bd19040",
+        "x": 510,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "4d34ecd9fc4993f3",
+        "type": "ui_slider",
+        "z": "3a686453b7c0cf57",
+        "name": "Speed",
+        "label": "Speed [µsteps/tclk]:",
+        "tooltip": "",
+        "group": "91c9836a.83f4e8",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "end",
+        "topic": "VALUE",
+        "topicType": "str",
+        "min": "0",
+        "max": "100000",
+        "step": "100",
+        "className": "",
+        "x": 90,
+        "y": 1400,
+        "wires": [
+            [
+                "7616402ad6f2c30e"
+            ]
+        ]
+    },
+    {
+        "id": "e081aaa4648f80c4",
+        "type": "ui_text",
+        "z": "3a686453b7c0cf57",
+        "group": "91c9836a.83f4e8",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "name": "Display topic",
+        "label": "Topic: ",
+        "format": "{{msg.topic}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 530,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "d9b02ce386d8b94a",
+        "type": "ui_button",
+        "z": "3a686453b7c0cf57",
+        "name": "Photo",
+        "group": "91c9836a.83f4e8",
+        "order": 7,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-camera fa-4x",
+        "payload": "CAPTURE",
+        "payloadType": "str",
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 90,
+        "y": 1240,
+        "wires": [
+            [
+                "d67082dd71428597",
+                "e081aaa4648f80c4",
+                "d5bb49efb6344273"
+            ]
+        ]
+    },
+    {
+        "id": "7616402ad6f2c30e",
+        "type": "function",
+        "z": "3a686453b7c0cf57",
+        "name": "",
+        "func": "var steps = flow.get('steps') || 0;\nsteps=msg.payload;\nflow.set('steps',steps);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1b46e5801559b3d",
+        "type": "function",
+        "z": "3a686453b7c0cf57",
+        "name": "",
+        "func": "msg.payload = flow.get('steps') || 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 1120,
+        "wires": [
+            [
+                "d67082dd71428597",
+                "e081aaa4648f80c4",
+                "d5bb49efb6344273"
+            ]
+        ]
+    },
+    {
+        "id": "d5bb49efb6344273",
+        "type": "ui_text",
+        "z": "3a686453b7c0cf57",
+        "group": "91c9836a.83f4e8",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "name": "Display speed",
+        "label": "Speed: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 540,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "91c9836a.83f4e8",
+        "type": "ui_group",
+        "name": "Controller",
+        "tab": "8209326d.bca23",
+        "order": 1,
+        "disp": false,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "6be8ec108bd19040",
+        "type": "mqtt-broker",
+        "name": "Luyts broker",
+        "broker": "mqtt.luytsm.be",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8209326d.bca23",
+        "type": "ui_tab",
+        "name": "Labfarm XY controller",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": true
+    }
+]
