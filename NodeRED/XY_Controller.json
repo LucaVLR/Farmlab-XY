@@ -1,359 +1,10 @@
 [
     {
-        "id": "9f34edae0beee83f",
-        "type": "tab",
-        "label": "Calibration",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "192589d78ea9942d",
         "type": "tab",
         "label": "Control panel",
         "disabled": false,
         "info": ""
-    },
-    {
-        "id": "517dfea4ee1a4558",
-        "type": "tab",
-        "label": "Gallery",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "757ef19432765cd7",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#0094CE",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#097479",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#1bbfff",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#0094ce",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey",
-                "palette": "light"
-            }
-        },
-        "site": {
-            "name": "Node-RED Dashboard",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "f44e1b4c62d5bfc2",
-        "type": "ui_tab",
-        "name": "Farmlab",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "6be8ec108bd19040",
-        "type": "mqtt-broker",
-        "name": "Luyts broker",
-        "broker": "mqtt.luytsm.be",
-        "port": "1883",
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": "4",
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willPayload": "",
-        "willMsg": {},
-        "sessionExpiry": ""
-    },
-    {
-        "id": "89c55a999ffb7aa6",
-        "type": "ui_group",
-        "name": "Manueel",
-        "tab": "1a75a4cbf354fc3a",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "1a75a4cbf354fc3a",
-        "type": "ui_tab",
-        "name": "SmartCar Controlepaneel",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "d9fbf6021876f834",
-        "type": "ui_group",
-        "name": "Automatisch",
-        "tab": "1a75a4cbf354fc3a",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "25eca3be58b4c427",
-        "type": "ui_group",
-        "name": "Select",
-        "tab": "1a75a4cbf354fc3a",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "f3d8bdf5fc5511bd",
-        "type": "ui_group",
-        "name": "Calibration",
-        "tab": "f44e1b4c62d5bfc2",
-        "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "87da3e5f0e2d01a5",
-        "type": "ui_group",
-        "name": "Control panel",
-        "tab": "f44e1b4c62d5bfc2",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "c4afbfcb07f028df",
-        "type": "mqtt-broker",
-        "name": "",
-        "broker": "188.34.195.229",
-        "port": "1883",
-        "clientid": "",
-        "usetls": false,
-        "compatmode": false,
-        "keepalive": "60",
-        "cleansession": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": ""
-    },
-    {
-        "id": "868697591eea6b1f",
-        "type": "ui_group",
-        "name": "Gallery",
-        "tab": "f44e1b4c62d5bfc2",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "590281e51a135877",
-        "type": "ui_button",
-        "z": "9f34edae0beee83f",
-        "name": "",
-        "group": "f3d8bdf5fc5511bd",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Start Calibration",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "start",
-        "payloadType": "str",
-        "topic": "/MCU/ACTIONS",
-        "topicType": "str",
-        "x": 660,
-        "y": 480,
-        "wires": [
-            [
-                "2939b77e27f8900a",
-                "73e5aad942faa189"
-            ]
-        ]
-    },
-    {
-        "id": "e9933a5ad9ee3bb7",
-        "type": "ui_text",
-        "z": "9f34edae0beee83f",
-        "group": "f3d8bdf5fc5511bd",
-        "order": 16,
-        "width": 0,
-        "height": 0,
-        "name": "Display topic",
-        "label": "Status: ",
-        "format": "{{msg.status}}",
-        "layout": "row-spread",
-        "className": "",
-        "x": 1050,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "2939b77e27f8900a",
-        "type": "function",
-        "z": "9f34edae0beee83f",
-        "name": "",
-        "func": "if(msg.payload == \"calibration\") {\n    msg.status = \"Calibrating...\";\n}\n\nif(msg.payload == \"done\") {\n    msg.status = \"Done\";\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 860,
-        "y": 580,
-        "wires": [
-            [
-                "e9933a5ad9ee3bb7"
-            ]
-        ]
-    },
-    {
-        "id": "f4bdb250ee7f7682",
-        "type": "mqtt in",
-        "z": "9f34edae0beee83f",
-        "name": "",
-        "topic": "/MCU/ACTIONS",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "6be8ec108bd19040",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 660,
-        "y": 640,
-        "wires": [
-            [
-                "2939b77e27f8900a"
-            ]
-        ]
-    },
-    {
-        "id": "73e5aad942faa189",
-        "type": "mqtt out",
-        "z": "9f34edae0beee83f",
-        "name": "",
-        "topic": "",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "6be8ec108bd19040",
-        "x": 1010,
-        "y": 480,
-        "wires": []
     },
     {
         "id": "16332113c7be818f",
@@ -388,7 +39,7 @@
         "outs": "end",
         "topic": "VALUE",
         "topicType": "str",
-        "min": "1000",
+        "min": "0",
         "max": "80000",
         "step": "500",
         "className": "",
@@ -426,6 +77,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 1140,
         "y": 660,
         "wires": [
@@ -479,7 +131,7 @@
         "payload": "1000",
         "payloadType": "str",
         "topic": "/MCU/UP",
-        "topicType": "msg",
+        "topicType": "str",
         "x": 850,
         "y": 520,
         "wires": [
@@ -533,7 +185,7 @@
         "payload": "1000",
         "payloadType": "str",
         "topic": "/MCU/LEFT",
-        "topicType": "msg",
+        "topicType": "str",
         "x": 850,
         "y": 640,
         "wires": [
@@ -561,7 +213,7 @@
         "payload": "picture",
         "payloadType": "str",
         "topic": "/MCU/ACTIONS",
-        "topicType": "msg",
+        "topicType": "str",
         "x": 1140,
         "y": 720,
         "wires": [
@@ -589,7 +241,7 @@
         "payload": "1000",
         "payloadType": "str",
         "topic": "/MCU/RIGHT",
-        "topicType": "msg",
+        "topicType": "str",
         "x": 850,
         "y": 700,
         "wires": [
@@ -643,7 +295,7 @@
         "payload": "1000",
         "payloadType": "str",
         "topic": "/MCU/DOWN",
-        "topicType": "msg",
+        "topicType": "str",
         "x": 850,
         "y": 820,
         "wires": [
@@ -679,29 +331,76 @@
         ]
     },
     {
-        "id": "be54586e3bff2e8d",
+        "id": "bbf625a1c555bd60",
         "type": "ui_button",
-        "z": "517dfea4ee1a4558",
-        "name": "",
-        "group": "868697591eea6b1f",
+        "z": "192589d78ea9942d",
+        "name": "Auto route",
+        "group": "87da3e5f0e2d01a5",
         "order": 0,
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Hier komen fotos",
+        "label": "Auto route",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "",
+        "payload": "auto",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 630,
-        "y": 240,
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 1130,
+        "y": 600,
         "wires": [
-            []
+            [
+                "16332113c7be818f"
+            ]
         ]
+    },
+    {
+        "id": "6be8ec108bd19040",
+        "type": "mqtt-broker",
+        "name": "Luyts broker",
+        "broker": "mqtt.luytsm.be",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "87da3e5f0e2d01a5",
+        "type": "ui_group",
+        "name": "Control panel",
+        "tab": "f44e1b4c62d5bfc2",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f44e1b4c62d5bfc2",
+        "type": "ui_tab",
+        "name": "Farmlab",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
     }
 ]
