@@ -85,7 +85,17 @@ void setup() {
   config.pin_pwdn = PWDN_GPIO_NUM;
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
-  config.pixel_format = PIXFORMAT_JPEG;
+  config.pixel_format = PIXFORMAT_JPEG;  // normaal PIXFORMAT_JPEG
+  /*
+  FRAMESIZE_UXGA (1600 x 1200)
+  FRAMESIZE_QVGA (320 x 240)
+  FRAMESIZE_CIF (352 x 288)
+  FRAMESIZE_VGA (640 x 480)
+  FRAMESIZE_SVGA (800 x 600)
+  FRAMESIZE_XGA (1024 x 768)
+  FRAMESIZE_SXGA (1280 x 1024)
+  jpeg_quality = number between 0-63, lower value = higher quality
+  */
   /*if (psramFound()) {
     config.frame_size = FRAMESIZE_UXGA;
     config.jpeg_quality = 10;
@@ -96,11 +106,9 @@ void setup() {
     config.jpeg_quality = 12;
     config.fb_count = 1;
   }*/
-
-  // small picture, small size
-  config.frame_size = FRAMESIZE_VGA;
-  config.jpeg_quality = 10;
-  config.fb_count = 1;
+  config.frame_size = FRAMESIZE_SVGA;
+    config.jpeg_quality = 12;
+    config.fb_count = 1;
 
   // Init Camera
   esp_err_t err = esp_camera_init(&config);
@@ -111,9 +119,12 @@ void setup() {
     
   camera_fb_t * fb = NULL;
 
+  sensor_t * s = esp_camera_sensor_get();
+
   Serial.println("Taking picture");
   // Take Picture with Camera
   pinMode(4, OUTPUT);
+  delay(6000); // resolves issues with colour tints, don't know why ¯\_(ツ)_/¯
   digitalWrite(4, HIGH);
   fb = esp_camera_fb_get();  
   if(!fb) {
@@ -189,7 +200,6 @@ void setup() {
     
     for(byte i = 0; i < 4; i++)
       Serial.print(based[i]);
-  
   }
 }
 
