@@ -31,7 +31,7 @@ void TMC2209::setup(HardwareSerial & serial,
   disableAutomaticGradientAdaptation();
   if (not isSetupAndCommunicating())
   {
-    blocking_ = true;
+    //blocking_ = true;
   }
 }
 
@@ -54,7 +54,7 @@ void TMC2209::enable()
 {
   if (blocking_)
   {
-    //return;
+    return;
   }
   chopper_config_.toff = toff_;
   writeStoredChopperConfig();
@@ -222,7 +222,7 @@ void TMC2209::setRunCurrent(uint8_t percent)
 {
   if (blocking_)
   {
-    //return;
+    return;
   }
   uint8_t run_current = percentToCurrentSetting(percent);
   driver_current_.irun = run_current;
@@ -233,7 +233,7 @@ void TMC2209::setHoldCurrent(uint8_t percent)
 {
   if (blocking_)
   {
-    //return;
+    return;
   }
   uint8_t hold_current = percentToCurrentSetting(percent);
 
@@ -341,7 +341,7 @@ void TMC2209::enableInverseMotorDirection()
 {
   if (blocking_)
   {
-    //return;
+    return;
   }
   global_config_.shaft = 1;
   writeStoredGlobalConfig();
@@ -351,7 +351,7 @@ void TMC2209::disableInverseMotorDirection()
 {
   if (blocking_)
   {
-    //return;
+    return;
   }
   global_config_.shaft = 0;
   writeStoredGlobalConfig();
@@ -449,7 +449,7 @@ void TMC2209::moveAtVelocity(int32_t microsteps_per_period)
 {
   if (blocking_)
   {
-    //return;
+    return;
   }
   write(ADDRESS_VACTUAL,microsteps_per_period);
 }
@@ -514,7 +514,7 @@ uint16_t TMC2209::getStallGuardResult()
 {
   if (blocking_)
   {
-    //return 0;
+    return 0;
   }
   return read(ADDRESS_SG_RESULT);
 }
@@ -523,7 +523,7 @@ void TMC2209::setStallGuardThreshold(uint8_t stall_guard_threshold)
 {
   if (blocking_)
   {
-    //return;
+    return;
   }
   write(ADDRESS_SGTHRS,stall_guard_threshold);
 }

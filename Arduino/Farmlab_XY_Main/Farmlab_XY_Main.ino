@@ -11,6 +11,7 @@ char* mqtt_server = "mqtt.luytsm.be";
 #define downTopic "/MCU/DOWN"
 #define leftTopic "/MCU/LEFT"
 #define rightTopic "/MCU/RIGHT"
+#define actionsTopic "/MCU/ACTIONS"
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -19,8 +20,11 @@ HardwareSerial & serial_stream = Serial2;
 
 const long SERIAL_BAUD_RATE = 115200;
 const int32_t RUN_VELOCITY = 100000;
-const uint8_t RUN_CURRENT_PERCENT = 10;
+const uint8_t RUN_CURRENT_PERCENT = 100;
 const uint8_t STALL_GUARD_THRESHOLD = 100;
+
+bool startCalibration = false;
+bool takePicture = false;
 
 TMC2209 stepper_driver;
 TMC2209 stepper_driver2;
@@ -42,6 +46,36 @@ void setup() {
   setup_wifi();
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+}
+
+void calibrateXY(unsigned int th) {
+  stepper_driver.moveAtVelocity(-RUN_VELOCITY);
+  stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+  delay(10);
+  
+  while(1) {
+    if(stepper_driver.getStallGuardResult() < th || stepper_driver2.getStallGuardResult() < th) {
+      stepper_driver.moveAtVelocity(0);
+      stepper_driver2.moveAtVelocity(0);
+      delay(250);
+      break;
+    }
+  }
+
+  stepper_driver.moveAtVelocity(-RUN_VELOCITY);
+  stepper_driver2.moveAtVelocity(RUN_VELOCITY);
+  delay(10);
+  
+  while(1) {
+    if(stepper_driver.getStallGuardResult() < th || stepper_driver2.getStallGuardResult() < th) {
+      stepper_driver.moveAtVelocity(0);
+      stepper_driver2.moveAtVelocity(0);
+      delay(250);
+      break;
+    }
+  }
+
+  client.publish("/MCU/CALIBRATION", "done");
 }
 
 void setup_wifi() {
@@ -67,33 +101,41 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived on topic: ");
   Serial.print(topic);
   Serial.print(". Message: ");
-  String aantalSteps;
+  String message;
   
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
-    aantalSteps += (char)payload[i];
+    message += (char)payload[i];
   }
   Serial.println();
   
   if(String(topic) == leftTopic) {
-    stepper_driver.moveAtVelocity(aantalSteps.toInt());
-    stepper_driver2.moveAtVelocity(-aantalSteps.toInt());
-    Serial.println("Going " + aantalSteps + " to the left");
+    stepper_driver.moveAtVelocity(-message.toInt());
+    stepper_driver2.moveAtVelocity(-message.toInt());
+    Serial.println("Going " + message + " to the left");
   }
   else if (String(topic) == rightTopic) {
-    stepper_driver.moveAtVelocity(-aantalSteps.toInt());
-    stepper_driver2.moveAtVelocity(aantalSteps.toInt());
-    Serial.println("Going " + aantalSteps + " the the right");
+    stepper_driver.moveAtVelocity(message.toInt());
+    stepper_driver2.moveAtVelocity(message.toInt());
+    Serial.println("Going " + message + " the the right");
   }
   else if (String(topic) == upTopic) {
-    stepper_driver.moveAtVelocity(-aantalSteps.toInt());
-    stepper_driver2.moveAtVelocity(-aantalSteps.toInt());
-    Serial.println("Going " + aantalSteps + " upwards");
+    stepper_driver.moveAtVelocity(message.toInt());
+    stepper_driver2.moveAtVelocity(-message.toInt());
+    Serial.println("Going " + message + " upwards");
   }
   else if (String(topic) == downTopic) {
-    stepper_driver.moveAtVelocity(aantalSteps.toInt());
-    stepper_driver2.moveAtVelocity(aantalSteps.toInt());
-    Serial.println("Going " + aantalSteps + " downwards");
+    stepper_driver.moveAtVelocity(-message.toInt());
+    stepper_driver2.moveAtVelocity(message.toInt());
+    Serial.println("Going " + message + " downwards");
+  }
+  else if(String(topic) == actionsTopic) {
+    if(message == "calibrate") {
+      startCalibration = true;
+    }
+    else if(message = "picture") {
+      takePicture = true;
+    }
   }
   else {
     Serial.println("Unknown topic...");
@@ -110,6 +152,7 @@ void reconnect() {
       client.subscribe(downTopic);
       client.subscribe(leftTopic);
       client.subscribe(rightTopic);
+      client.subscribe(actionsTopic);
     } 
     else {
       Serial.print("failed, rc=");
@@ -125,4 +168,13 @@ void loop() {
     reconnect();
   }
   client.loop();
+
+  if(startCalibration) {
+    calibrateXY(50);
+    startCalibration = false;
+  }
+
+  if(takePicture) {
+    takePicture = false;
+  }
 }
