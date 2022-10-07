@@ -37,6 +37,8 @@ PubSubClient client(espClient);
 #define ALPHABET "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 #define PAD '='
 
+camera_fb_t * fb = NULL;
+
 void setup_wifi() {
   delay(10);
   Serial.println();
@@ -116,13 +118,14 @@ void setup() {
     Serial.printf("Camera init failed with error 0x%x", err);
     return;
   }
-    
-  camera_fb_t * fb = NULL;
 
-  sensor_t * s = esp_camera_sensor_get();
+  //sensor_t * s = esp_camera_sensor_get();
 
+  takeEncodePicture();
+}
+
+void takeEncodePicture() {
   Serial.println("Taking picture");
-  // Take Picture with Camera
   pinMode(4, OUTPUT);
   delay(6000); // resolves issues with colour tints, don't know why ¯\_(ツ)_/¯
   digitalWrite(4, HIGH);
