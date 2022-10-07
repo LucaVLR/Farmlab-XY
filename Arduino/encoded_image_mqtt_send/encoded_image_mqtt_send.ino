@@ -6,7 +6,7 @@
 
 char* ssid = "bletchley";
 char* password = "laptop!internet";
-char* mqtt_server = "10.150.195.88";
+char* mqtt_server = "mqtt.luytsm.be";
 
 #define topic "/FOTOS"
 
@@ -55,11 +55,30 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    if (client.connect("ESP8266Client")) {
+      Serial.println("connected");
+    } 
+    else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println("trying again in 5 seconds");
+      delay(5000);
+    }
+  }
+}
+
 void setup() {
   Serial.begin(115200);
   delay(3000);
 
-  //setup_wifi();
+  setup_wifi();
+  client.setServer(mqtt_server, 1883);
+  if (!client.connected()) {
+    reconnect();
+  }
 
   // Turn-off the 'brownout detector'
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
@@ -141,6 +160,8 @@ void takeEncodePicture() {
   byte index = 0;
   byte convint = 0;
   bool pad = false;
+
+  String pic_str;
   for(size_t bufi = 0; bufi < fb->len; bufi+=3) {
     for(byte i = 0; i < 3; i++) {
       imgdata[i] = fb->buf[bufi + i];
@@ -198,11 +219,17 @@ void takeEncodePicture() {
       based[3] = ALPHABET[index];
     }
     
-    for(byte i = 0; i < 4; i++)
+    for(byte i = 0; i < 4; i++) {
       Serial.print(based[i]);
+      pic_str += based[i];
+    }
   }
+
+  client.publish(topic, (char*)pic_str.c_str());
 }
 
 void loop() {
-  
+  if (!client.connected()) {
+    reconnect();
+  }
 }
