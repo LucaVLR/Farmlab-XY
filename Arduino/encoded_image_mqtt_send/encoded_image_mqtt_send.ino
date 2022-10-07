@@ -71,6 +71,8 @@ void reconnect() {
 }
 
 void setup() {
+  // Turn-off the 'brownout detector'
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
   Serial.begin(115200);
   delay(3000);
 
@@ -80,9 +82,8 @@ void setup() {
     reconnect();
   }
 
-  // Turn-off the 'brownout detector'
-  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
-  
+  client.publish(topic, "hallo wereld");
+
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;
@@ -225,6 +226,10 @@ void takeEncodePicture() {
     }
   }
 
+  client.setBufferSize(pic_str.length()+64);
+  if (!client.connected()) {
+    reconnect();
+  }
   client.publish(topic, (char*)pic_str.c_str());
 }
 
