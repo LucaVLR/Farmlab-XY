@@ -1,0 +1,314 @@
+[
+    {
+        "id": "d9829c75b8d8dc15",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "12774b9d063477ac",
+        "type": "mqtt in",
+        "z": "d9829c75b8d8dc15",
+        "name": "",
+        "topic": "/FOTOS",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "d0034fe090e16144",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 280,
+        "wires": [
+            [
+                "5005c6e5e8781232",
+                "237b03d845e474bb"
+            ]
+        ]
+    },
+    {
+        "id": "5005c6e5e8781232",
+        "type": "ui_template",
+        "z": "d9829c75b8d8dc15",
+        "group": "982da520a58651fd",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<img src=\"{{'data:image/jpg;base64,' + msg.payload}}\" alt=\"hallo\" />",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 460,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6738e31abc67fdb9",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "38d38f1ad3079dfb",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "create_table",
+        "x": 490,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ec6ce3f614b177d",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "CREATE DB",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE GALLERIJ(IMGSTR TEXT NOT NULL); COMMIT;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "6738e31abc67fdb9"
+            ]
+        ]
+    },
+    {
+        "id": "c48b39f8e646c68a",
+        "type": "function",
+        "z": "d9829c75b8d8dc15",
+        "name": "INSERT",
+        "func": "var newMsg = {\n    \"topic\": \"INSERT INTO GALLERIJ(IMGSTR) VALUES($val)\",\n    \"payload\": [\n        msg.payload\n    ]\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 360,
+        "wires": [
+            [
+                "e73334edc5ca5753"
+            ]
+        ]
+    },
+    {
+        "id": "e73334edc5ca5753",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "38d38f1ad3079dfb",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "insert_foto",
+        "x": 810,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "237b03d845e474bb",
+        "type": "change",
+        "z": "d9829c75b8d8dc15",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "c48b39f8e646c68a"
+            ]
+        ]
+    },
+    {
+        "id": "5bd4829a2c0bc290",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "SELECT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM GALLERIJ;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 460,
+        "wires": [
+            [
+                "bbbc2086189b689f"
+            ]
+        ]
+    },
+    {
+        "id": "bbbc2086189b689f",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "38d38f1ad3079dfb",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "select_gallerij_all",
+        "x": 490,
+        "y": 460,
+        "wires": [
+            [
+                "90022404b2734f29"
+            ]
+        ]
+    },
+    {
+        "id": "90022404b2734f29",
+        "type": "ui_template",
+        "z": "d9829c75b8d8dc15",
+        "group": "982da520a58651fd",
+        "name": "",
+        "order": 0,
+        "width": "6",
+        "height": "7",
+        "format": "<tr ng-repeat=\"x in msg.payload | limitTo:20\">\n  <td>{{$index}}</td>\n  <td>{{msg.payload[$index]}}</td>\n</tr>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 740,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48ff5cc8f4fb2ff1",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "38d38f1ad3079dfb",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "create_table",
+        "x": 490,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15ccc707e54db1b4",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "DROP DB",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DROP TABLE GALLERIJ; COMMIT;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "48ff5cc8f4fb2ff1"
+            ]
+        ]
+    },
+    {
+        "id": "d0034fe090e16144",
+        "type": "mqtt-broker",
+        "name": "luyts_broker",
+        "broker": "mqtt.luytsm.be",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "982da520a58651fd",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "b69843f80ecf5fdd",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "38d38f1ad3079dfb",
+        "type": "sqlitedb",
+        "db": "D:/fotos.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "b69843f80ecf5fdd",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
