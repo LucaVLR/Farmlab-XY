@@ -1,0 +1,96 @@
+[
+    {
+        "id": "d9829c75b8d8dc15",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "12774b9d063477ac",
+        "type": "mqtt in",
+        "z": "d9829c75b8d8dc15",
+        "name": "",
+        "topic": "/FOTOS",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "d0034fe090e16144",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 280,
+        "wires": [
+            [
+                "5005c6e5e8781232"
+            ]
+        ]
+    },
+    {
+        "id": "5005c6e5e8781232",
+        "type": "ui_template",
+        "z": "d9829c75b8d8dc15",
+        "group": "982da520a58651fd",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "format": "<img src=\"{{'data:image/jpg;base64,' + msg.payload}}\" alt=\"hallo\" />",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 460,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d0034fe090e16144",
+        "type": "mqtt-broker",
+        "name": "luyts_broker",
+        "broker": "mqtt.luytsm.be",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "982da520a58651fd",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "b69843f80ecf5fdd",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b69843f80ecf5fdd",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
