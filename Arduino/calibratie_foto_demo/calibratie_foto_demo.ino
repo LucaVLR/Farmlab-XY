@@ -5,8 +5,8 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-char* ssid = "Jelte Laptop";  // bletchley
-char* password = "jelteniels";  // laptop!internet
+char* ssid = "bletchley";  // bletchley
+char* password = "laptop!internet";  // laptop!internet
 char* mqtt_server = "mqtt.luytsm.be"; //10.150.195.88
 
 #define upTopic "/MCU/UP"
@@ -60,8 +60,14 @@ TMC2209 stepper_driver2;
 void setup() {
   // Turn-off the 'brownout detector'
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
+
   Serial.begin(115200);
   Serial2.begin(115200);
+
+  Serial.println("Booting up, please wait 6 seconds");
+  // resolves issues with colour tints because of camera cailbration nonsense, don't know why ¯\_(ツ)_/¯
+  delay(6000);
+  Serial.println("Bootup completed");
 
   stepper_driver.setup(serial_stream, SERIAL_BAUD_RATE);
   stepper_driver.setRunCurrent(RUN_CURRENT_PERCENT);
@@ -110,8 +116,6 @@ void setup() {
     Serial.printf("Camera init failed with error 0x%x", err);
     return;
   }
-
-  
 }
 
 void calibrateXY(unsigned int th) {
@@ -230,10 +234,7 @@ void reconnect() {
 }
 
 void takeEncodePicture() {
-  Serial.println("Taking picture, please wait 6 seconds");
-  
-  // resolves issues with colour tints because of camera cailbration nonsense, don't know why ¯\_(ツ)_/¯
-  delay(6000);
+  Serial.println("Taking picture, please wait");
   
   digitalWrite(4, HIGH);    // Enable camera flash LED
   fb = esp_camera_fb_get(); // Take picture
@@ -252,7 +253,7 @@ void takeEncodePicture() {
   byte index = 0;     // manages the index of the base64 alphabet, based on 6 bits of imgdata
   byte convint = 0;   // holds interrupted index when padding is required
   bool pad = false;   // tells if padding is required
-  String pic_str;     // stores the final base64 string.
+  String pic_str = "";// stores the final base64 string.
 
   // This loops through the frame buffer, encoding it into a single base64 string
   for(size_t bufi = 0; bufi < fb->len; bufi+=3) {
@@ -327,7 +328,8 @@ void takeEncodePicture() {
 
   // PubSubClient has a standard send limit of 256 bytes
   // our base64 string can be about 30k bytes, meaning we have to expand accordingly
-  client.setBufferSize(pic_str.length());
+  // we also have to leave room for the message headers, about 64 bytes should suffice
+  client.setBufferSize(pic_str.length()+64);
 
   // Ensure a proper connection before attempting to send data
   if(!client.connected()) {
