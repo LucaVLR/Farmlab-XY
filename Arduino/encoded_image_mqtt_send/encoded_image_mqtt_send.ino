@@ -219,7 +219,8 @@ void takeEncodePicture() {
     }
     
     for(byte i = 0; i < 4; i++) {
-      Serial.print(based[i]);
+      //Serial.print(based[i]); // while useful for debugging, this will somehow cause the program to NOT send the image through MQTT
+                                // remove as needed
       pic_str += based[i];
     }
   }
