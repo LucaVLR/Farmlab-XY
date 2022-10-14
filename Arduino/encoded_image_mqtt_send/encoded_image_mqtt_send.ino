@@ -224,7 +224,7 @@ void takeEncodePicture() {
     }
   }
 
-  client.setBufferSize(pic_str.length()+64);
+  client.setBufferSize(pic_str.length()+128);
   if (!client.connected()) {
     reconnect();
   }

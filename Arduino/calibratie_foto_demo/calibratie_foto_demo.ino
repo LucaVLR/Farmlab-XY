@@ -328,8 +328,8 @@ void takeEncodePicture() {
 
   // PubSubClient has a standard send limit of 256 bytes
   // our base64 string can be about 30k bytes, meaning we have to expand accordingly
-  // we also have to leave room for the message headers, about 64 bytes should suffice
-  client.setBufferSize(pic_str.length()+64);
+  // we also have to leave room for the message headers, about 128 bytes should suffice
+  client.setBufferSize(pic_str.length()+128);
 
   // Ensure a proper connection before attempting to send data
   if(!client.connected()) {
@@ -337,7 +337,7 @@ void takeEncodePicture() {
   }
 
   // Send the picture through MQTT
-  // NOTE: not entirely stable in single picture testing, might need a better QoS
+  // NOTE: not entirely stable in single picture testing, might need a better QoS or buffer size
   client.publish(pictureTopic, (char*)pic_str.c_str());
 
   pic_str = ""; // clear the string, hopefully this saves memory if Arduino has decent garbage collection
