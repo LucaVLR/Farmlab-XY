@@ -6,7 +6,7 @@
 
 char* ssid = "bletchley";
 char* password = "laptop!internet";
-char* mqtt_server = "mqtt.luytsm.be";
+char* mqtt_server = "10.150.195.88";
 
 #define topic "/FOTOS"
 

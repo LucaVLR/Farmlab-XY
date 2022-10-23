@@ -7,7 +7,7 @@
 
 char* ssid = "bletchley";  // bletchley
 char* password = "laptop!internet";  // laptop!internet
-char* mqtt_server = "mqtt.luytsm.be"; //10.150.195.88
+char* mqtt_server = "10.150.195.88"; //10.150.195.88
 
 #define upTopic "/MCU/UP"
 #define downTopic "/MCU/DOWN"
@@ -53,6 +53,8 @@ const uint8_t STALL_GUARD_THRESHOLD = 100;
 
 bool startCalibration = false;
 bool takePicture = false;
+bool autoRoute = false;
+bool hasCalibrated = false;
 
 TMC2209 stepper_driver;
 TMC2209 stepper_driver2;
@@ -65,7 +67,7 @@ void setup() {
   Serial2.begin(115200);
 
   Serial.println("Booting up, please wait 6 seconds");
-  // resolves issues with colour tints because of camera cailbration nonsense, don't know why ¯\_(ツ)_/¯
+  // resolves issues with colour tints because of camera calibration nonsense, don't know why ¯\_(ツ)_/¯
   delay(6000);
   Serial.println("Bootup completed");
 
@@ -146,6 +148,7 @@ void calibrateXY(unsigned int th) {
   }
 
   client.publish("/MCU/CALIBRATION", "done");
+  hasCalibrated = true;
 }
 
 void setup_wifi() {
@@ -206,6 +209,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
     else if(message = "picture") {
       takePicture = true;
     }
+    else if(message == "auto")
+      autoRoute = true;
   }
   else {
     Serial.println("Unknown topic...");
@@ -340,7 +345,50 @@ void takeEncodePicture() {
   // NOTE: not entirely stable in single picture testing, might need a better QoS or buffer size
   client.publish(pictureTopic, (char*)pic_str.c_str());
 
-  pic_str = ""; // clear the string, hopefully this saves memory if Arduino has decent garbage collection
+  pic_str = ""; // clear the string, hopefully this saves memory if ESP has decent garbage collection
+}
+
+void takeRoute() {
+  // Move up for x distance
+  stepper_driver.moveAtVelocity(RUN_VELOCITY);
+  stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+  delay(2000);
+  stepper_driver.moveAtVelocity(0);
+  stepper_driver2.moveAtVelocity(0);
+  
+  for(byte x = 0; x < 3; x++) {
+    // Go right for x distance
+    stepper_driver.moveAtVelocity(RUN_VELOCITY);
+    stepper_driver2.moveAtVelocity(RUN_VELOCITY);
+    delay(2000);
+    stepper_driver.moveAtVelocity(0);
+    stepper_driver2.moveAtVelocity(0);
+  
+    // take picture
+    takeEncodePicture();
+  }
+
+  // Move up for x distance
+  stepper_driver.moveAtVelocity(RUN_VELOCITY);
+  stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+  delay(2000);
+  stepper_driver.moveAtVelocity(0);
+  stepper_driver2.moveAtVelocity(0);
+
+  // take picture
+  takeEncodePicture();
+
+  for(byte x = 0; x < 2; x++) {
+    // Go left for x distance
+    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
+    stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+    delay(2000);
+    stepper_driver.moveAtVelocity(0);
+    stepper_driver2.moveAtVelocity(0);
+
+    // take picture
+    takeEncodePicture();
+  }
 }
 
 void loop() {
@@ -357,5 +405,16 @@ void loop() {
   if(takePicture) {
     takeEncodePicture();
     takePicture = false;
+  }
+
+  if(autoRoute) {
+    if(hasCalibrated)
+      takeRoute();
+    else {
+      calibrateXY(50);
+      takeRoute();
+    }
+    autoRoute = false;
+    hasCalibrated = false;
   }
 }
