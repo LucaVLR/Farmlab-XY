@@ -36,43 +36,27 @@ const TMC2209::SerialAddress SERIAL_ADDRESS_1 = TMC2209::SERIAL_ADDRESS_1;
 void setup() {
   // Turn-off the 'brownout detector'
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
-  pinMode(4, OUTPUT);
+  Serial.begin(SERIAL_BAUD_RATE);
   
   stepper_driver.setup(serial_stream, SERIAL_BAUD_RATE, SERIAL_ADDRESS_0);
   stepper_driver.setRunCurrent(RUN_CURRENT_PERCENT);
   stepper_driver.setStallGuardThreshold(STALL_GUARD_THRESHOLD);
   stepper_driver.enable();
-
-  digitalWrite(4, HIGH);
-  delay(250);
-  digitalWrite(4, LOW);
-  delay(250);
+  stepper_driver.moveAtVelocity(0);
+  stepper_driver.setMicrostepsPerStepPowerOfTwo(8);
 
   stepper_driver2.setup(serial_stream, SERIAL_BAUD_RATE, SERIAL_ADDRESS_1);
   stepper_driver2.setRunCurrent(RUN_CURRENT_PERCENT);
   stepper_driver2.setStallGuardThreshold(STALL_GUARD_THRESHOLD);
   stepper_driver2.enable();
-
-  digitalWrite(4, HIGH);
-  delay(250);
-  digitalWrite(4, LOW);
-  delay(250);
+  stepper_driver2.moveAtVelocity(0);
+  stepper_driver2.setMicrostepsPerStepPowerOfTwo(8);
 
   setup_wifi();
-
-  digitalWrite(4, HIGH);
-  delay(250);
-  digitalWrite(4, LOW);
-  delay(250);
   
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
 
-  digitalWrite(4, HIGH);
-  delay(250);
-  digitalWrite(4, LOW);
-  delay(250);
-  
   pinMode(ENABLE, OUTPUT);
   digitalWrite(ENABLE, LOW);
 }
@@ -123,19 +107,19 @@ void callback(char* topic, byte* payload, unsigned int length) {
   
   if(String(topic) == leftTopic) {
     stepper_driver.moveAtVelocity(-message.toInt());
-    stepper_driver2.moveAtVelocity(-message.toInt());
+    stepper_driver2.moveAtVelocity(-message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if (String(topic) == rightTopic) {
     stepper_driver.moveAtVelocity(message.toInt());
-    stepper_driver2.moveAtVelocity(message.toInt());
+    stepper_driver2.moveAtVelocity(message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if (String(topic) == upTopic) {
     stepper_driver.moveAtVelocity(message.toInt());
-    stepper_driver2.moveAtVelocity(-message.toInt());
+    stepper_driver2.moveAtVelocity(-message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if (String(topic) == downTopic) {
     stepper_driver.moveAtVelocity(-message.toInt());
-    stepper_driver2.moveAtVelocity(message.toInt());
+    stepper_driver2.moveAtVelocity(message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if(String(topic) == actionsTopic) {
     if(message == "calibrate") {
@@ -168,10 +152,10 @@ void loop() {
   }
   client.loop();
 
-  /*if(startCalibration) {
+  if(startCalibration) {
     calibrateXY(50);
     startCalibration = false;
-  }*/
+  }
 
   if(takePicture) {
     takePicture = false;
