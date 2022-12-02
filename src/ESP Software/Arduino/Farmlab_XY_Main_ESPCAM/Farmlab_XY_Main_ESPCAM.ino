@@ -1,5 +1,5 @@
 #include <TMC2209.h>
-
+#include "driver/rtc_io.h"
 #include <WiFi.h>
 #include <PubSubClient.h>
 
@@ -29,24 +29,52 @@ bool startCalibration = false;
 bool takePicture = false;
 
 TMC2209 stepper_driver;
+const TMC2209::SerialAddress SERIAL_ADDRESS_0 = TMC2209::SERIAL_ADDRESS_0;
 TMC2209 stepper_driver2;
+const TMC2209::SerialAddress SERIAL_ADDRESS_1 = TMC2209::SERIAL_ADDRESS_1;
 
 void setup() {
-  Serial.begin(115200);
-
-  stepper_driver.setup(serial_stream, SERIAL_BAUD_RATE);
+  // Turn-off the 'brownout detector'
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
+  pinMode(4, OUTPUT);
+  
+  stepper_driver.setup(serial_stream, SERIAL_BAUD_RATE, SERIAL_ADDRESS_0);
   stepper_driver.setRunCurrent(RUN_CURRENT_PERCENT);
   stepper_driver.setStallGuardThreshold(STALL_GUARD_THRESHOLD);
   stepper_driver.enable();
 
-  stepper_driver2.setup(serial_stream, SERIAL_BAUD_RATE, TMC2209::SERIAL_ADDRESS_1);
+  digitalWrite(4, HIGH);
+  delay(250);
+  digitalWrite(4, LOW);
+  delay(250);
+
+  stepper_driver2.setup(serial_stream, SERIAL_BAUD_RATE, SERIAL_ADDRESS_1);
   stepper_driver2.setRunCurrent(RUN_CURRENT_PERCENT);
   stepper_driver2.setStallGuardThreshold(STALL_GUARD_THRESHOLD);
   stepper_driver2.enable();
 
+  digitalWrite(4, HIGH);
+  delay(250);
+  digitalWrite(4, LOW);
+  delay(250);
+
   setup_wifi();
+
+  digitalWrite(4, HIGH);
+  delay(250);
+  digitalWrite(4, LOW);
+  delay(250);
+  
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
+
+  digitalWrite(4, HIGH);
+  delay(250);
+  digitalWrite(4, LOW);
+  delay(250);
+  
+  pinMode(ENABLE, OUTPUT);
+  digitalWrite(ENABLE, LOW);
 }
 
 void calibrateXY(unsigned int th) {
@@ -140,10 +168,10 @@ void loop() {
   }
   client.loop();
 
-  if(startCalibration) {
+  /*if(startCalibration) {
     calibrateXY(50);
     startCalibration = false;
-  }
+  }*/
 
   if(takePicture) {
     takePicture = false;
