@@ -3,9 +3,9 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-char* ssid = "Jelte Laptop";
-char* password = "jelteniels";
-char* mqtt_server = "mqtt.luytsm.be";
+char* ssid = "bletchley";
+char* password = "laptop!internet";
+char* mqtt_server = "10.150.195.88";
 
 #define upTopic "/MCU/UP"
 #define downTopic "/MCU/DOWN"
