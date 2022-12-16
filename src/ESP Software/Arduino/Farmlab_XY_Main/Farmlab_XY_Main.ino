@@ -14,8 +14,6 @@ char* mqtt_server = "10.150.195.88";
 #define actionsTopic "/MCU/ACTIONS"
 #define autoRouteTopic "/MCU/AUTOROUTE"
 
-#define MULTIPLIER 1
-
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -61,7 +59,7 @@ void setup() {
 
 void calibrateXY(unsigned int th) {
   for(byte i = 0; i < 2; i++) {
-    stepper_driver.moveAtVelocity(-RUN_VELOCITY*MULTIPLIER);
+    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
     stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
     delay(10);
     
@@ -74,7 +72,7 @@ void calibrateXY(unsigned int th) {
       }
     }
   
-    stepper_driver.moveAtVelocity(RUN_VELOCITY*MULTIPLIER);
+    stepper_driver.moveAtVelocity(RUN_VELOCITY);
     stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
     delay(10);
     
@@ -114,11 +112,11 @@ void autoRoute(String cords) {
     float X = strX.toFloat();
     float Y = strY.toFloat();
 
-    stepper_driver.moveAtVelocity(RUN_VELOCITY*MULTIPLIER);
+    stepper_driver.moveAtVelocity(RUN_VELOCITY);
     stepper_driver2.moveAtVelocity(RUN_VELOCITY);
     delay(X*100);
 
-    stepper_driver.moveAtVelocity(-RUN_VELOCITY*MULTIPLIER);
+    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
     stepper_driver2.moveAtVelocity(RUN_VELOCITY);
     delay(Y*100);
 
@@ -161,19 +159,19 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
   
   if(String(topic) == leftTopic) {
-    stepper_driver.moveAtVelocity(-message.toInt()*MULTIPLIER);
+    stepper_driver.moveAtVelocity(-message.toInt());
     stepper_driver2.moveAtVelocity(-message.toInt());
   }
   else if (String(topic) == rightTopic) {
-    stepper_driver.moveAtVelocity(message.toInt()*MULTIPLIER);
+    stepper_driver.moveAtVelocity(message.toInt());
     stepper_driver2.moveAtVelocity(message.toInt());
   }
   else if (String(topic) == upTopic) {
-    stepper_driver.moveAtVelocity(-message.toInt()*MULTIPLIER);
+    stepper_driver.moveAtVelocity(-message.toInt());
     stepper_driver2.moveAtVelocity(message.toInt());
   }
   else if (String(topic) == downTopic) {
-    stepper_driver.moveAtVelocity(message.toInt()*MULTIPLIER);
+    stepper_driver.moveAtVelocity(message.toInt());
     stepper_driver2.moveAtVelocity(-message.toInt());
   }
   else if(String(topic) == actionsTopic) {
