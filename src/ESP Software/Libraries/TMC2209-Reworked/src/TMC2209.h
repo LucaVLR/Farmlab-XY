@@ -30,6 +30,9 @@ public:
     long serial_baud_rate=115200,
     SerialAddress serial_address=SERIAL_ADDRESS_0);
 
+  void write(uint8_t register_address,
+    uint32_t data);
+
   // check to make sure TMC2209 is properly setup and communicating
   bool isSetupAndCommunicating();
 
@@ -185,7 +188,7 @@ public:
   void useExternalSenseResistors();
   void useInternalSenseResistors();
 
-private:
+//private:
   bool blocking_;
   HardwareSerial * serial_ptr_;
   uint32_t serial_baud_rate_;
@@ -517,8 +520,6 @@ private:
   void sendDatagram(Datagram & datagram,
     uint8_t datagram_size);
 
-  void write(uint8_t register_address,
-    uint32_t data);
   uint32_t read(uint8_t register_address);
 
   uint8_t percentToCurrentSetting(uint8_t percent);

@@ -12,6 +12,9 @@ char* mqtt_server = "10.150.195.88";
 #define leftTopic "/MCU/LEFT"
 #define rightTopic "/MCU/RIGHT"
 #define actionsTopic "/MCU/ACTIONS"
+#define autorouteTopic "/MCU/AUTOROUTE"
+
+#define MULTIPLIER 8
 
 #define ENABLE 14
 
@@ -21,7 +24,7 @@ PubSubClient client(espClient);
 HardwareSerial & serial_stream = Serial;
 
 const long SERIAL_BAUD_RATE = 115200;
-const int32_t RUN_VELOCITY = 100000;
+const int32_t RUN_VELOCITY = 20000;
 const uint8_t RUN_CURRENT_PERCENT = 100;
 const uint8_t STALL_GUARD_THRESHOLD = 100;
 
@@ -43,14 +46,12 @@ void setup() {
   stepper_driver.setStallGuardThreshold(STALL_GUARD_THRESHOLD);
   stepper_driver.enable();
   stepper_driver.moveAtVelocity(0);
-  stepper_driver.setMicrostepsPerStepPowerOfTwo(8);
 
   stepper_driver2.setup(serial_stream, SERIAL_BAUD_RATE, SERIAL_ADDRESS_1);
   stepper_driver2.setRunCurrent(RUN_CURRENT_PERCENT);
   stepper_driver2.setStallGuardThreshold(STALL_GUARD_THRESHOLD);
   stepper_driver2.enable();
   stepper_driver2.moveAtVelocity(0);
-  stepper_driver2.setMicrostepsPerStepPowerOfTwo(8);
 
   setup_wifi();
   
@@ -63,7 +64,7 @@ void setup() {
 
 void calibrateXY(unsigned int th) {
   stepper_driver.moveAtVelocity(-RUN_VELOCITY);
-  stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+  stepper_driver2.moveAtVelocity(-RUN_VELOCITY*MULTIPLIER);
   delay(10);
   
   while(1) {
@@ -76,7 +77,7 @@ void calibrateXY(unsigned int th) {
   }
 
   stepper_driver.moveAtVelocity(-RUN_VELOCITY);
-  stepper_driver2.moveAtVelocity(RUN_VELOCITY);
+  stepper_driver2.moveAtVelocity(RUN_VELOCITY*MULTIPLIER);
   delay(10);
   
   while(1) {
@@ -87,6 +88,10 @@ void calibrateXY(unsigned int th) {
       break;
     }
   }
+}
+
+void autoRoute() {
+  
 }
 
 void setup_wifi() {
@@ -107,26 +112,30 @@ void callback(char* topic, byte* payload, unsigned int length) {
   
   if(String(topic) == leftTopic) {
     stepper_driver.moveAtVelocity(-message.toInt());
-    stepper_driver2.moveAtVelocity(-message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
+    stepper_driver2.moveAtVelocity(-message.toInt()*MULTIPLIER); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if (String(topic) == rightTopic) {
     stepper_driver.moveAtVelocity(message.toInt());
-    stepper_driver2.moveAtVelocity(message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
+    stepper_driver2.moveAtVelocity(message.toInt()*MULTIPLIER); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if (String(topic) == upTopic) {
     stepper_driver.moveAtVelocity(message.toInt());
-    stepper_driver2.moveAtVelocity(-message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
+    stepper_driver2.moveAtVelocity(-message.toInt()*MULTIPLIER); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if (String(topic) == downTopic) {
     stepper_driver.moveAtVelocity(-message.toInt());
-    stepper_driver2.moveAtVelocity(message.toInt()*4); // *4 mss niet nodig op PCB, mogelijk door MS1-2
+    stepper_driver2.moveAtVelocity(message.toInt()*MULTIPLIER); // *4 mss niet nodig op PCB, mogelijk door MS1-2
   }
   else if(String(topic) == actionsTopic) {
     if(message == "calibrate") {
       startCalibration = true;
     }
-    else if(message = "picture") {
+    else if(message == "picture") {
       takePicture = true;
+    }
+    else if(message == "stop") {
+      stepper_driver.moveAtVelocity(0);
+      stepper_driver2.moveAtVelocity(0);
     }
   }
 }
@@ -153,6 +162,7 @@ void loop() {
   client.loop();
 
   if(startCalibration) {
+    calibrateXY(50);
     calibrateXY(50);
     startCalibration = false;
   }

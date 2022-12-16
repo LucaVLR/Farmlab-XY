@@ -679,7 +679,7 @@ void TMC2209::setOperationModeToSerial(HardwareSerial & serial,
   serial_ptr_ = &serial;
   serial_address_ = serial_address;
 
-  serial_ptr_->begin(serial_baud_rate);
+  //serial_ptr_->begin(serial_baud_rate);	// Messes with ESP when init multiple objects
 
   global_config_.bytes = 0;
   global_config_.i_scale_analog = 0;
