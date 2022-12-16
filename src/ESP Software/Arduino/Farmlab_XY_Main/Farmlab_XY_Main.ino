@@ -1,11 +1,10 @@
 #include <TMC2209.h>
-
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-char* ssid = "bletchley";
-char* password = "laptop!internet";
-char* mqtt_server = "10.150.195.88";
+#define ssid "bletchley"
+#define password "laptop!internet"
+#define mqtt_server "10.150.195.88"
 
 #define upTopic "/MCU/UP"
 #define downTopic "/MCU/DOWN"
@@ -14,15 +13,15 @@ char* mqtt_server = "10.150.195.88";
 #define actionsTopic "/MCU/ACTIONS"
 #define autoRouteTopic "/MCU/AUTOROUTE"
 
+#define SERIAL_BAUD_RATE 115200
+#define RUN_VELOCITY 2000
+#define RUN_CURRENT_PERCENT 100
+#define STALL_GUARD_THRESHOLD 100
+
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 HardwareSerial & serial_stream = Serial2;
-
-const long SERIAL_BAUD_RATE = 115200;
-const int32_t RUN_VELOCITY = 2000;
-const uint8_t RUN_CURRENT_PERCENT = 100;
-const uint8_t STALL_GUARD_THRESHOLD = 100;
 
 bool startCalibration = false;
 bool startAutoRoute = false;
@@ -89,42 +88,26 @@ void calibrateXY(unsigned int th) {
   client.publish("/MCU/CALIBRATION", "done");
 }
 
-void autoRoute(String cords) {
-  if(cords == "") {
-    // Full autoroute
-  }
-  else {
-    String strX, strY;
-    byte x = 0;
-    
-    do {
-      strX += cords[x];
-      x++;
-    } while(cords[x] != ',');
-    
-    x++;
-    
-    do {
-      strY += cords[x];
-      x++;
-    } while(x < cords.length());
-    
-    float X = strX.toFloat();
-    float Y = strY.toFloat();
-
+void autoRoute(float x, float y) {
+  if(x >= 0.0) {
     stepper_driver.moveAtVelocity(RUN_VELOCITY);
     stepper_driver2.moveAtVelocity(RUN_VELOCITY);
-    delay(X*100);
-
-    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
-    stepper_driver2.moveAtVelocity(RUN_VELOCITY);
-    delay(Y*100);
-
-    stepper_driver.moveAtVelocity(0);
-    stepper_driver2.moveAtVelocity(0);
-    delay(1000);
-    startCalibration = true;
+    delay(x*100);
   }
+  else {
+    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
+    stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+    delay((-x)*100);
+  }
+
+  stepper_driver.moveAtVelocity(-RUN_VELOCITY);
+  stepper_driver2.moveAtVelocity(RUN_VELOCITY);
+  delay(y*100);
+  
+  stepper_driver.moveAtVelocity(0);
+  stepper_driver2.moveAtVelocity(0);
+  delay(1000);
+  startCalibration = true;
 }
 
 void setup_wifi() {
@@ -184,10 +167,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
     else if(message == "stop") {
       stopMotors = true;
     }
-    else if(message == "auto") {
-      Serial.println("stoppink");
-      startAutoRoute = true;
-    }
   }
   else if(String(topic) == autoRouteTopic) {
     cords = message;
@@ -220,6 +199,21 @@ void reconnect() {
   }
 }
 
+float parseNextCords() {
+  char strX[10];
+  byte x = 0;
+
+  do {
+    strX[x] = cords[x];
+    x++;
+  } while((cords[x] != ',') & (x < cords.length()));
+
+  strX[x] = '\0';
+  cords.remove(0, x + 1);
+
+  return atof(strX);
+}
+
 void loop() {
   if (!client.connected()) {
     reconnect();
@@ -232,9 +226,19 @@ void loop() {
   }
 
   if(startAutoRoute) {
-    autoRoute(cords);
-    startAutoRoute = false;
-    cords = "";
+  float x, y;
+    if(cords.length() > 20) {
+      for(byte i = 0; i < 9; i++)
+        autoRoute(parseNextCords(), parseNextCords());
+
+      startAutoRoute = false;
+      cords = "";
+    }
+    else {
+      autoRoute(parseNextCords(), parseNextCords());
+      startAutoRoute = false;
+      cords = "";
+    }
   }
 
   if(takePicture) {
