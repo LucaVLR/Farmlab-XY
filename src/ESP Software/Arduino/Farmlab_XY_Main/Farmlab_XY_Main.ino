@@ -58,8 +58,8 @@ void setup() {
 
 void calibrateXY(unsigned int th) {
   for(byte i = 0; i < 2; i++) {
-    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
-    stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+    stepper_driver.moveAtVelocity(RUN_VELOCITY);
+    stepper_driver2.moveAtVelocity(RUN_VELOCITY);
     delay(10);
     
     while(1) {
@@ -76,7 +76,7 @@ void calibrateXY(unsigned int th) {
     delay(10);
     
     while(1) {
-      if(stepper_driver.getStallGuardResult() > (th+25) || stepper_driver2.getStallGuardResult() > (th+25)) {
+      if(stepper_driver.getStallGuardResult() > th || stepper_driver2.getStallGuardResult() > th) {
         stepper_driver.moveAtVelocity(0);
         stepper_driver2.moveAtVelocity(0);
         delay(250);
@@ -90,13 +90,13 @@ void calibrateXY(unsigned int th) {
 
 void autoRoute(float x, float y) {
   if(x >= 0.0) {
-    stepper_driver.moveAtVelocity(RUN_VELOCITY);
-    stepper_driver2.moveAtVelocity(RUN_VELOCITY);
+    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
+    stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
     delay(x*100);
   }
   else {
-    stepper_driver.moveAtVelocity(-RUN_VELOCITY);
-    stepper_driver2.moveAtVelocity(-RUN_VELOCITY);
+    stepper_driver.moveAtVelocity(RUN_VELOCITY);
+    stepper_driver2.moveAtVelocity(RUN_VELOCITY);
     delay((-x)*100);
   }
 
@@ -142,12 +142,12 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
   
   if(String(topic) == leftTopic) {
-    stepper_driver.moveAtVelocity(-message.toInt());
-    stepper_driver2.moveAtVelocity(-message.toInt());
-  }
-  else if (String(topic) == rightTopic) {
     stepper_driver.moveAtVelocity(message.toInt());
     stepper_driver2.moveAtVelocity(message.toInt());
+  }
+  else if (String(topic) == rightTopic) {
+    stepper_driver.moveAtVelocity(-message.toInt());
+    stepper_driver2.moveAtVelocity(-message.toInt());
   }
   else if (String(topic) == upTopic) {
     stepper_driver.moveAtVelocity(-message.toInt());
@@ -161,7 +161,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     if(message == "calibrate") {
       startCalibration = true;
     }
-    else if(message = "picture") {
+    else if(message == "picture") {
       takePicture = true;
     }
     else if(message == "stop") {
@@ -221,7 +221,7 @@ void loop() {
   client.loop();
 
   if(startCalibration) {
-    calibrateXY(275);
+    calibrateXY(300);
     startCalibration = false;
   }
 
