@@ -4,7 +4,7 @@
 HardwareSerial & serial_stream = Serial2;
 
 const long SERIAL_BAUD_RATE = 115200;
-const uint8_t RUN_CURRENT_PERCENT = 10;
+const uint8_t RUN_CURRENT_PERCENT = 100;
 
 // Instantiate TMC2209
 TMC2209 stepper_driver;
@@ -12,9 +12,10 @@ TMC2209 stepper_driver;
 void setup()
 {
   Serial.begin(SERIAL_BAUD_RATE);
-  
+  Serial2.begin(SERIAL_BAUD_RATE);
 
-  stepper_driver.setup(serial_stream, SERIAL_BAUD_RATE);
+  stepper_driver.setup(serial_stream, SERIAL_BAUD_RATE, TMC2209::SERIAL_ADDRESS_1);
+  //stepper_driver.setup(serial_stream, SERIAL_BAUD_RATE);
   stepper_driver.setRunCurrent(RUN_CURRENT_PERCENT);
   stepper_driver.enable();
 }
