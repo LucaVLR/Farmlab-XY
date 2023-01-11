@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include <TMC2209.h>
 #include "driver/rtc_io.h"
 #include "esp_camera.h"
@@ -65,9 +66,6 @@ TMC2209 stepper_driver2;
 const TMC2209::SerialAddress SERIAL_ADDRESS_1 = TMC2209::SERIAL_ADDRESS_1;
 
 void setup() {
-  pinMode(4, OUTPUT);
-  digitalWrite(4, LOW);
-  
   // Turn-off the 'brownout detector'
   WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
   Serial.begin(115200);
@@ -83,6 +81,9 @@ void setup() {
   stepper_driver2.enable();
   stepper_driver2.write(0x00, 385);
   stepper_driver2.setMicrostepsPerStep(8);
+
+  pinMode(4, OUTPUT);
+  digitalWrite(4, LOW);
 
   setup_wifi();
   
@@ -116,6 +117,9 @@ void setup() {
 
   // Init Camera
   esp_err_t err = esp_camera_init(&config);
+  if (err != ESP_OK) {
+    return;
+  }
 
   pinMode(ENABLE, OUTPUT);
   digitalWrite(ENABLE, LOW);
@@ -186,10 +190,6 @@ void setup_wifi() {
 
 void callback(char* topic, byte* payload, unsigned int length) {
   String message;
-
-  digitalWrite(4, HIGH);
-  delay(100);
-  digitalWrite(4, LOW);
   
   for (int i = 0; i < length; i++) {
     message += (char)payload[i];
@@ -273,14 +273,17 @@ void loop() {
   if(startAutoRoute) {
   float x, y;
     if(cords.length() > 20) {
-      for(byte i = 0; i < 9; i++)
+      for(byte i = 0; i < 9; i++) {
         autoRoute(parseNextCords(), parseNextCords());
-
+        takeEncodePicture();
+      }
+      
       startAutoRoute = false;
       cords = "";
     }
     else {
       autoRoute(parseNextCords(), parseNextCords());
+      takeEncodePicture();
       startAutoRoute = false;
       cords = "";
     }

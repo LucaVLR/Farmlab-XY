@@ -1,0 +1,145 @@
+[
+    {
+        "id": "d9829c75b8d8dc15",
+        "type": "tab",
+        "label": "dev_flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6738e31abc67fdb9",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "create_table",
+        "x": 450,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ec6ce3f614b177d",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "CREATE TABLE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE IF NOT EXISTS GALLERIJ(IMGSTR TEXT NOT NULL, IMGDATE INTEGER); COMMIT;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 100,
+        "wires": [
+            [
+                "6738e31abc67fdb9"
+            ]
+        ]
+    },
+    {
+        "id": "48ff5cc8f4fb2ff1",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "drop_table",
+        "x": 450,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15ccc707e54db1b4",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "DROP TABLE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DROP TABLE GALLERIJ; COMMIT;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "48ff5cc8f4fb2ff1"
+            ]
+        ]
+    },
+    {
+        "id": "cb87ce1f7520d784",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "INSERT DUMMY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "INSERT INTO GALLERIJ(IMGSTR, IMGDATE) VALUES(\"BBB\", $val)",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 260,
+        "wires": [
+            [
+                "a1b9437fefbc9494"
+            ]
+        ]
+    },
+    {
+        "id": "a1b9437fefbc9494",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "insert_dummy",
+        "x": 460,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ca8bf81c9ae0033",
+        "type": "sqlitedb",
+        "db": "/fotos_db.db",
+        "mode": "RWC"
+    }
+]

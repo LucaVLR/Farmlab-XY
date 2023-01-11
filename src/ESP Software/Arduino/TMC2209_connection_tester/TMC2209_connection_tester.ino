@@ -24,11 +24,11 @@ void loop()
 {
   if (stepper_driver.isSetupAndCommunicating())
   {
-    Serial.println("good");
+    Serial.println("connected");
   }
   else
   {
-    Serial.println("bad");
+    Serial.println("not connected");
   }
 
   delay(200);
