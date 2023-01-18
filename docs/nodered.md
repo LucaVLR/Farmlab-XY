@@ -6,6 +6,6 @@ Het control panel heeft 7 verschillende knoppen en een slider. Met de knoppen ka
 
 Het auto-route gedeelte geeft de gebruiker de mogelijkheid om een foto te nemen van één plant naar keuze, of van alle planten in één keer. Vooraleer de gebruiker dit kan doen moet hij wel eerst de kalibratie uitvoeren of manueel de camera naar de hoek links onder brengen met het control panel. De foto's worden dan getoond in de gallerij, maar dat onderdeel heeft Luca ontwikkeld en zal door hem besproken worden in een ander hoofdstuk van dit verslag.
 
-![](RackMultipart20230118-1-es64sw_html_a61a6587bfa3b3cf.png)
+![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/nodered%20dashboard.png)
 
 _NodeRed Dashboard 1_
