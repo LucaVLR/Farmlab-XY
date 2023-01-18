@@ -6,7 +6,7 @@ In de span van dit semester hebben we 3 verschillende PCB's gebruikt en gestest.
 
 Dit is de PCB waarmee we het semester zijn mee begonnen. Deze PCB was gemaakt vorig jaar maar we hadden deze nog niet helemaal kunnen testen door de late levering van de TMC2209 chips. Omdat we wisten dat we zeker een nieuwe PCB gingen maken dit semester konden we deze PCB tenminste nog gebruiken als soldeer oefening om de TMC2209 te solderen, aangezien niemand van ons ervaring had met QFN.
 
-![](RackMultipart20230118-1-es64sw_html_bd36c2cd17262d9c.png)
+![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/pcb1.png)
 
 _PCB schema 1_
 
@@ -19,7 +19,7 @@ Hier is de eerste PCB die we hebben ontworpen dit semester. Deze heeft een compl
 
 Met deze PCB waren we erin geslaagd om te kunnen communiceren met de TMC2209. Maar er zijn nog enkele fouten in deze PCB, daarom dat er nog een 3de versie is gemaakt.
 
-![](RackMultipart20230118-1-es64sw_html_8a1cdef569b2956c.png)
+![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/pcb2.png)
 
 _PCB schema 2_
 
@@ -36,7 +36,7 @@ Er zijn ook extra aanpassingen die we hebben gemaakt aan de PCB, dit waren geen 
 - Omdat de ESP-CAM geen USB heeft om te programmeren moet deze door een andere ESP of Arduino geprogrammeerd worden. Programming pins toevoegen bespaart ons de tijd om elke keer de ESP-CAM uit de PCB te halen en terug in te steken.
 - Een pullup weerstand aan de ENN pin van de TMCs en die kan laag worden getrokken door een IO pin van de ESP-CAM. Deze is nodig om de TMCs later pas te starten, als we dit niet zouden doen dan verscheen er een grote current spike elke keer dat de voeding werd aangesloten (3A voor een +- 1 seconden).
 
-![](RackMultipart20230118-1-es64sw_html_123300f8a8f77a89.png)
+![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/pcb3.png)
 
 _PCB schema 3_
 
@@ -47,11 +47,11 @@ Maar ook al was communicatie mogelijk en succesvol in de 2de PCB, kregen we geen
 - Elke connectie nameten met een oscilloscoop om te controlleren of alle spanningen goed aankomen bij elke pin van elke chip.
 - Met een logic analyser de UART signalen nameten om te zien wat voor data verstuurd wordt. Dit is het resultaat van de metingen:
 
-![](RackMultipart20230118-1-es64sw_html_40c9cb42948d7596.png)
+![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/logic%20analyser%20pcb%202.png)
 
 _Resultaat bij PCB 2_
 
-![](RackMultipart20230118-1-es64sw_html_23b0e11dc3400b11.png)
+![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/logic%20analyser%20pcb%203.png)
 
 _Resultaat bij PCB 3_
 
