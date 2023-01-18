@@ -1,4 +1,4 @@
-# 3NodeRed Dashboard – Jelte
+# NodeRed Dashboard – Jelte
 
 Het dashboard bestaat uit 3 onderdelen, de delen die Jelte heeft ontwikkeld zijn de control panel en auto-route, deze worden even kort besproken.
 
