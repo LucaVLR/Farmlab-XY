@@ -2,7 +2,7 @@
 
 Voor we aan de autoroute konden beginnen moesten we eerst een paar afmetingen nemen, berekeningen maken en regels vastlegen. Hieronder zie je een mockup van het resultaat van onze metingen en berekeningen. Elke coördinaat representeert 100ms van beweging van de camera. Dus bv. bij plant 1 is de X-coördinaat 28.4, dit betekent dat de camera 2.84 seconden lang naar rechts zal moeten gaan vanaf het startpunt. Deze coördinaten worden doorgestuurd via het NodeRed dashboard. Elke knop stuurt de respectievelijke coördinaten. De Autoroute knop zal dan een grote string van alle coördinaten doorsturen.
 
-![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/autoroute%20mockup.png)
+![](./assets/img/autoroute%20mockup.png)
   
 _Autoroute mockup_
 
@@ -41,6 +41,6 @@ void autoRoute(float x, float y) {
 
 _Autoroute code_
 
-![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/autoroute%20blockdiagram.png)
+![](./assets/img/autoroute%20blockdiagram.png)
 
 _Autoroute code blokdiagram_
