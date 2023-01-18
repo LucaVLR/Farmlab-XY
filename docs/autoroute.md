@@ -12,6 +12,10 @@ Single autoroute wordt gedaan door een simpele functie die als agruments de X en
 
 ## Full Autoroute
 
+Met de volledige autoroute gebruiken we dezelfde functie als de single autoroute. Het enige verschil is dat we deze een paar keer loopen voor dat we terug kalibreren. Het dashboard stuurt alle coördinaten door en het systeem weet wannneer dat een enkele of volledige autoroute gevraagt wordt.
+
+Telkens dat de camera op de positie van een plant komt, pakt ze een foto. Deze wordt dan geconverteerd en doorgestuurd terwijl dat naar de volgende plant bewogen wordt.
+
 ## Code
 
 ```cpp

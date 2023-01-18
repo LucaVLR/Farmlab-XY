@@ -124,8 +124,8 @@ void setup() {
     config.fb_count = 1;
   }*/
   config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 12;
-    config.fb_count = 1;
+  config.jpeg_quality = 12;
+  config.fb_count = 1;
 
   // Init Camera
   esp_err_t err = esp_camera_init(&config);
@@ -219,8 +219,6 @@ void takeEncodePicture() {
     }
     
     for(byte i = 0; i < 4; i++) {
-      //Serial.print(based[i]); // while useful for debugging, this will somehow cause the program to NOT send the image through MQTT
-                                // remove as needed
       pic_str += based[i];
     }
   }

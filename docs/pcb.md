@@ -61,3 +61,26 @@ Mogelijke oplossingen voor het probleem zouden volgens ons kunnen zijn:
 
 - Gewoon de breakout boards gebruiken op de PCB i.p.v. de chips.
 - Het lijkt er op dat het probleem toch ligt bij de solderingen. Het is zeer moeilijk en onbetrouwbaar om een QFN chip te solderen zonder gebruik te maken van een stencil. Als we een stencil hadden kunnen gebruiken had het resultaat misschien anders geweest.
+
+
+## QFN Soldering
+
+Tijdens de assemblage van de PCBs hebben we wel wat kunnen leren over het bevestigen van QFN packages. QFN staat voor Quad Flat No leads. Dit betekend dat het een vlakke package is met pins aan alle 4 kanten en zonder uitstekende pins. De pins zitten dus vlak tegen de onderkant van de package. De beste methode om een QFN te solderen is door soldeerpasta aan te brengen aan de footprint door middel van een stencil en dan na plaatsing van de component, deze in een soldeeroven af te bakken.
+
+Aangezien we geen stencil hadden, moesten we dit op een andere manier oplossen. We hebben de volgende werkmethode bedacht op basis van video's en tips van het internet:
+- Rijkelijk flux aanbrengen aan de footprint.
+- Soldeertin aanbrengen aan een fijne soldeerbout tip.
+- Snel met de tip van de soldeerbout over de pads van de footprint wrijven.
+- Waar nodig even de soldeertin reduceren om fout verbindingen te verwijderen.
+- Voorzichtig de component op de footprint plaatsen door middel van een microscoop en twee pincetten.
+- Met een hete lucht pistool rond 350C en een trage airflow rustig de component en footprint warm maken.
+- Wanneer de soldeertin gesmolten is, rustig de component recht naar beneden duwen om goed contact te maken met de PCB.
+- Na dat de soldeertin terug gestolt is, even met een microscoop alle pins nakijken om goede bevestiging vast te stellen.
+
+Met deze werkmethode hebben we goede resultaten gekregen. Een paar foto's zijn hieronder te zien:
+
+![](./assets/img/QFN-top_view.JPG)
+![](./assets/img/QFN-front_view.JPG)
+![](./assets/img/QFN-back_view.JPG)
+![](./assets/img/QFN-left_view.JPG)
+![](./assets/img/QFN-right_view.JPG)
