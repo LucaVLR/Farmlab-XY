@@ -71,7 +71,7 @@ Aangezien we geen stencil hadden, moesten we dit op een andere manier oplossen. 
 - Rijkelijk flux aanbrengen aan de footprint.
 - Soldeertin aanbrengen aan een fijne soldeerbout tip.
 - Snel met de tip van de soldeerbout over de pads van de footprint wrijven.
-- Waar nodig even de soldeertin reduceren om fout verbindingen te verwijderen.
+- Waar nodig even de soldeertin reduceren om foute verbindingen te verwijderen.
 - Voorzichtig de component op de footprint plaatsen door middel van een microscoop en twee pincetten.
 - Met een hete lucht pistool rond 350C en een trage airflow rustig de component en footprint warm maken.
 - Wanneer de soldeertin gesmolten is, rustig de component recht naar beneden duwen om goed contact te maken met de PCB.
