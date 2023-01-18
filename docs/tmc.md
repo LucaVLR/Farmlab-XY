@@ -2,7 +2,7 @@
 
 De TMC2209 is een bipolar stepper motor driver. De chip komt in een QFN28 package en heeft verschillende opertation modes en eigenschappen zoals: STEP/DIR interface, Smooth Running 256 Microstep, StealthChop, SpreadCycle, StallGuard, een UART interface en nog meer. We kozen deze chip omdat deze beschikt over handige eigenschappen die wij zochten, zoals de UART interface en StallGuard. Alle informatie over de TMC2209 is gevonden in de [datasheet](https://www.trinamic.com/fileadmin/assets/Products/ICs_Documents/TMC2209_Datasheet_V103.pdf).
 
-![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/blokschema%20TMC.png)
+![](./assets/img/blokschema%20TMC.png)
 
 _TMC2209 block diagram_
 
@@ -18,7 +18,7 @@ Een ander probleem dat we hebben vastgesteld is dat de meting van het StallGuard
 
 De TMC2209 beschikt ook over een UART interface om te communiceren met de ESP. Deze manier van communiceren was voor ons meer voordelig dan het STEP/DIR interface want de ESP-CAM beschikt niet over heel veel IO-pins. De manier waarop de ESP en TMC zullen communiceren heet 1-wire UART. We kunnen ook hiermee verschillende slaves aansturen met 1 master. Dit is mogelijk door de MS1 en MS2 pins, deze pins worden normaal gebruikt om de step resolution in te stellen, maar kunnen ook gebruikt worden om het slave address in te stellen.
 
-![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/blokschema%20TMC%20UART.png)
+![](./assets/img/blokschema%20TMC%20UART.png)
 
 _UART Communicatie met meerdere slaves_
 
