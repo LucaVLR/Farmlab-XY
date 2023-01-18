@@ -37,3 +37,8 @@ void calibrateXY(unsigned int th) {
 ```
 
 _Kalibrate functie_
+
+## Blokdiagram
+![](https://github.com/LucaVLR/Farmlab-XY/blob/main/docs/assets/img/kalibratie%20blockdiagram.png)
+
+_Kalibratie blokdiagram_
