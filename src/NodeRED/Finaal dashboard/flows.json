@@ -1,0 +1,1593 @@
+[
+    {
+        "id": "d9829c75b8d8dc15",
+        "type": "tab",
+        "label": "dev_flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "20f6e2b311b7ff65",
+        "type": "tab",
+        "label": "Gallerij",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "192589d78ea9942d",
+        "type": "tab",
+        "label": "Control panel",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "285d3877f62cdd03",
+        "type": "tab",
+        "label": "Auto-Route",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1ca8bf81c9ae0033",
+        "type": "sqlitedb",
+        "db": "/fotos_db.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "4a027f9005997a8f",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "384835bf7368bdfd",
+        "type": "ui_group",
+        "name": "Gallerij",
+        "tab": "f44e1b4c62d5bfc2",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "87da3e5f0e2d01a5",
+        "type": "ui_group",
+        "name": "Control panel",
+        "tab": "f44e1b4c62d5bfc2",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "f44e1b4c62d5bfc2",
+        "type": "ui_tab",
+        "name": "Farmlab",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f1316666f3b9f3cb",
+        "type": "mqtt-broker",
+        "name": "bletch_broker",
+        "broker": "10.150.195.88",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "2416bfd49b81569f",
+        "type": "ui_group",
+        "name": "Auto-Route",
+        "tab": "f44e1b4c62d5bfc2",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "6738e31abc67fdb9",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "create_table",
+        "x": 450,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ec6ce3f614b177d",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "CREATE TABLE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE IF NOT EXISTS GALLERIJ(IMGSTR TEXT NOT NULL, IMGDATE INTEGER); COMMIT;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 280,
+        "y": 100,
+        "wires": [
+            [
+                "6738e31abc67fdb9"
+            ]
+        ]
+    },
+    {
+        "id": "48ff5cc8f4fb2ff1",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "drop_table",
+        "x": 450,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15ccc707e54db1b4",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "DROP TABLE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DROP TABLE GALLERIJ; COMMIT;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "48ff5cc8f4fb2ff1"
+            ]
+        ]
+    },
+    {
+        "id": "cb87ce1f7520d784",
+        "type": "inject",
+        "z": "d9829c75b8d8dc15",
+        "name": "INSERT DUMMY",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "INSERT INTO GALLERIJ(IMGSTR, IMGDATE) VALUES(\"BBB\", $val)",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 260,
+        "wires": [
+            [
+                "a1b9437fefbc9494"
+            ]
+        ]
+    },
+    {
+        "id": "a1b9437fefbc9494",
+        "type": "sqlite",
+        "z": "d9829c75b8d8dc15",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "insert_dummy",
+        "x": 460,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7e7257cad5c8461",
+        "type": "inject",
+        "z": "20f6e2b311b7ff65",
+        "name": "SELECT FIRST IMG",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "SELECT * FROM GALLERIJ WHERE oid = 1;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 200,
+        "wires": [
+            [
+                "a545794b88278ea7",
+                "c5d2543be4d80fad"
+            ]
+        ]
+    },
+    {
+        "id": "72a74c47f4578f53",
+        "type": "ui_template",
+        "z": "20f6e2b311b7ff65",
+        "group": "384835bf7368bdfd",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<img src=\"{{'data:image/jpg;base64,' + msg.payload}}\" alt=\"gallerij\" />",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 780,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5837f4f35e68bc6",
+        "type": "ui_button",
+        "z": "20f6e2b311b7ff65",
+        "name": "prev img",
+        "group": "384835bf7368bdfd",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-arrow-left fa-2x",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 420,
+        "wires": [
+            [
+                "7102136fc5cbaba3"
+            ]
+        ]
+    },
+    {
+        "id": "d86843b9ea1a397f",
+        "type": "ui_button",
+        "z": "20f6e2b311b7ff65",
+        "name": "next img",
+        "group": "384835bf7368bdfd",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-arrow-right fa-2x",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "0e6ba2c70ef2cad2"
+            ]
+        ]
+    },
+    {
+        "id": "a545794b88278ea7",
+        "type": "sqlite",
+        "z": "20f6e2b311b7ff65",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "db_img_access",
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "6ee3deadc6372193"
+            ]
+        ]
+    },
+    {
+        "id": "6ee3deadc6372193",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "parse base64",
+        "func": "let jsonstr = msg.payload[0];\n\nvar newMsg = {\n    \"topic\": \"base64str\",\n    \"payload\": [\n        jsonstr.IMGSTR\n    ]\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "72a74c47f4578f53"
+            ]
+        ]
+    },
+    {
+        "id": "afb7b4e50acfec86",
+        "type": "ui_template",
+        "z": "20f6e2b311b7ff65",
+        "group": "384835bf7368bdfd",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<p> {{ msg.payload }} / {{ msg.topic }} </p>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 480,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "75e9772daf2a54c9",
+        "type": "change",
+        "z": "20f6e2b311b7ff65",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "imgct",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "maximg",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 500,
+        "wires": [
+            [
+                "afb7b4e50acfec86"
+            ]
+        ]
+    },
+    {
+        "id": "c5d2543be4d80fad",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "create global imgct",
+        "func": "global.set(\"imgct\", 1);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0e6ba2c70ef2cad2",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "increment imgct",
+        "func": "var imgct = global.get('imgct');\nvar maxct = global.get('maximg');\n\nif (imgct < maxct)\n    imgct++;\n\nglobal.set('imgct', imgct);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7102136fc5cbaba3",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "decrement imgct",
+        "func": "var imgct = global.get('imgct');\n\nif (imgct != 1 )\n    imgct--;\n\nglobal.set('imgct', imgct);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b731b70ed1c58c7",
+        "type": "complete",
+        "z": "20f6e2b311b7ff65",
+        "name": "",
+        "scope": [
+            "0e6ba2c70ef2cad2",
+            "7102136fc5cbaba3",
+            "4340b650a0dfe3f0"
+        ],
+        "uncaught": false,
+        "x": 150,
+        "y": 500,
+        "wires": [
+            [
+                "75e9772daf2a54c9"
+            ]
+        ]
+    },
+    {
+        "id": "7e990ceda3abee2b",
+        "type": "inject",
+        "z": "20f6e2b311b7ff65",
+        "name": "get img count",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT oid FROM GALLERIJ;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "a492d60beb739e0b"
+            ]
+        ]
+    },
+    {
+        "id": "a492d60beb739e0b",
+        "type": "sqlite",
+        "z": "20f6e2b311b7ff65",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "db_img_access",
+        "x": 400,
+        "y": 40,
+        "wires": [
+            [
+                "4340b650a0dfe3f0"
+            ]
+        ]
+    },
+    {
+        "id": "4340b650a0dfe3f0",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "update global maximg",
+        "func": "let jsonstr = msg.payload.length;\n\nglobal.set(\"maximg\", jsonstr);",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1b0e86b01444248",
+        "type": "complete",
+        "z": "20f6e2b311b7ff65",
+        "name": "",
+        "scope": [
+            "0e6ba2c70ef2cad2",
+            "7102136fc5cbaba3"
+        ],
+        "uncaught": false,
+        "x": 70,
+        "y": 280,
+        "wires": [
+            [
+                "792449d753228932"
+            ]
+        ]
+    },
+    {
+        "id": "792449d753228932",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "SELECT",
+        "func": "var imgct = global.get('imgct');\n\nvar newMsg = {\n    \"topic\": \"SELECT * FROM GALLERIJ WHERE oid = \" + imgct + \";\",\n    \"payload\": [\n        msg.payload\n    ]\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 280,
+        "wires": [
+            [
+                "a545794b88278ea7"
+            ]
+        ]
+    },
+    {
+        "id": "12774b9d063477ac",
+        "type": "mqtt in",
+        "z": "20f6e2b311b7ff65",
+        "name": "",
+        "topic": "/MCU/FOTOS",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f1316666f3b9f3cb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 580,
+        "wires": [
+            [
+                "237b03d845e474bb"
+            ]
+        ]
+    },
+    {
+        "id": "c48b39f8e646c68a",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "INSERT",
+        "func": "var topicstring = `INSERT INTO GALLERIJ(IMGSTR, IMGDATE) VALUES($val, ${Date.now()})`\n\nvar newMsg = {\n    \"topic\": topicstring,\n    \"payload\": [\n        msg.payload\n    ]\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 580,
+        "wires": [
+            [
+                "e73334edc5ca5753"
+            ]
+        ]
+    },
+    {
+        "id": "e73334edc5ca5753",
+        "type": "sqlite",
+        "z": "20f6e2b311b7ff65",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "insert_foto",
+        "x": 630,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "237b03d845e474bb",
+        "type": "change",
+        "z": "20f6e2b311b7ff65",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 580,
+        "wires": [
+            [
+                "c48b39f8e646c68a"
+            ]
+        ]
+    },
+    {
+        "id": "57732cf6b5dc2039",
+        "type": "complete",
+        "z": "20f6e2b311b7ff65",
+        "name": "",
+        "scope": [
+            "e73334edc5ca5753"
+        ],
+        "uncaught": false,
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "a492d60beb739e0b"
+            ]
+        ]
+    },
+    {
+        "id": "3b0e84cd55c4dfd3",
+        "type": "ui_button",
+        "z": "20f6e2b311b7ff65",
+        "name": "Clear Gallery",
+        "group": "384835bf7368bdfd",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "label": "Clear Gallery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 660,
+        "wires": [
+            [
+                "838a42a00022cc9d"
+            ]
+        ]
+    },
+    {
+        "id": "838a42a00022cc9d",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "DROP TABLE",
+        "func": "var topicstring = `DROP TABLE GALLERIJ; COMMIT; `\n\nvar newMsg = {\n    \"topic\": topicstring,\n    \"payload\": \"\"\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 660,
+        "wires": [
+            [
+                "90d4b8148722026d"
+            ]
+        ]
+    },
+    {
+        "id": "90d4b8148722026d",
+        "type": "sqlite",
+        "z": "20f6e2b311b7ff65",
+        "mydb": "1ca8bf81c9ae0033",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "clear_db",
+        "x": 540,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b63293e20e51186",
+        "type": "complete",
+        "z": "20f6e2b311b7ff65",
+        "name": "",
+        "scope": [
+            "838a42a00022cc9d"
+        ],
+        "uncaught": false,
+        "x": 90,
+        "y": 740,
+        "wires": [
+            [
+                "c946293d0d005894"
+            ]
+        ]
+    },
+    {
+        "id": "c946293d0d005894",
+        "type": "function",
+        "z": "20f6e2b311b7ff65",
+        "name": "CREATE TABLE",
+        "func": "var topicstring = `CREATE TABLE IF NOT EXISTS GALLERIJ(IMGSTR TEXT NOT NULL, IMGDATE INTEGER); COMMIT; `\n\nvar newMsg = {\n    \"topic\": topicstring,\n    \"payload\": \"\"\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 740,
+        "wires": [
+            [
+                "90d4b8148722026d"
+            ]
+        ]
+    },
+    {
+        "id": "16332113c7be818f",
+        "type": "mqtt out",
+        "z": "192589d78ea9942d",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1316666f3b9f3cb",
+        "x": 1330,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "fd6c1481dca52865",
+        "type": "ui_slider",
+        "z": "192589d78ea9942d",
+        "name": "Speed",
+        "label": "Speed:",
+        "tooltip": "",
+        "group": "87da3e5f0e2d01a5",
+        "order": 15,
+        "width": "6",
+        "height": "2",
+        "passthru": true,
+        "outs": "end",
+        "topic": "VALUE",
+        "topicType": "str",
+        "min": "0",
+        "max": "2000",
+        "step": "50",
+        "x": 850,
+        "y": 400,
+        "wires": [
+            [
+                "b02dbb0449de0136"
+            ]
+        ]
+    },
+    {
+        "id": "b02dbb0449de0136",
+        "type": "function",
+        "z": "192589d78ea9942d",
+        "name": "",
+        "func": "var steps = flow.get('steps') || 0;\nsteps=msg.payload;\nflow.set('steps',steps);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15ea74a042d3aa67",
+        "type": "function",
+        "z": "192589d78ea9942d",
+        "name": "",
+        "func": "msg.payload = flow.get('steps') || 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1140,
+        "y": 660,
+        "wires": [
+            [
+                "16332113c7be818f"
+            ]
+        ]
+    },
+    {
+        "id": "88a64b9e97783a51",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Stop button",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-stop-circle fa-4x",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 830,
+        "y": 460,
+        "wires": [
+            [
+                "16332113c7be818f"
+            ]
+        ]
+    },
+    {
+        "id": "47d221aad504a04b",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Up",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-arrow-up fa-4x",
+        "payload": "1000",
+        "payloadType": "str",
+        "topic": "/MCU/UP",
+        "topicType": "str",
+        "x": 850,
+        "y": 520,
+        "wires": [
+            [
+                "15ea74a042d3aa67"
+            ]
+        ]
+    },
+    {
+        "id": "b0db753fc2ccb84f",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Stop button",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-stop-circle fa-4x",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 830,
+        "y": 580,
+        "wires": [
+            [
+                "16332113c7be818f"
+            ]
+        ]
+    },
+    {
+        "id": "2bfff4ad826d5b90",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Left",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-arrow-left fa-4x",
+        "payload": "1000",
+        "payloadType": "str",
+        "topic": "/MCU/LEFT",
+        "topicType": "str",
+        "x": 850,
+        "y": 640,
+        "wires": [
+            [
+                "15ea74a042d3aa67"
+            ]
+        ]
+    },
+    {
+        "id": "649d6f5e39653fe2",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Picture",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-camera fa-4x",
+        "payload": "picture",
+        "payloadType": "str",
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 1140,
+        "y": 720,
+        "wires": [
+            [
+                "16332113c7be818f"
+            ]
+        ]
+    },
+    {
+        "id": "aae58bd9388d7f34",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Right",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-arrow-right fa-4x",
+        "payload": "1000",
+        "payloadType": "str",
+        "topic": "/MCU/RIGHT",
+        "topicType": "str",
+        "x": 850,
+        "y": 700,
+        "wires": [
+            [
+                "15ea74a042d3aa67"
+            ]
+        ]
+    },
+    {
+        "id": "c583b917e89f61c6",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Stop button",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-stop-circle fa-4x",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 830,
+        "y": 760,
+        "wires": [
+            [
+                "16332113c7be818f"
+            ]
+        ]
+    },
+    {
+        "id": "d76761d5156b0cfe",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Down",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-arrow-down fa-4x",
+        "payload": "1000",
+        "payloadType": "str",
+        "topic": "/MCU/DOWN",
+        "topicType": "str",
+        "x": 850,
+        "y": 820,
+        "wires": [
+            [
+                "15ea74a042d3aa67"
+            ]
+        ]
+    },
+    {
+        "id": "29152fa993ccf906",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Stop button",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-stop-circle fa-4x",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 830,
+        "y": 880,
+        "wires": [
+            [
+                "16332113c7be818f"
+            ]
+        ]
+    },
+    {
+        "id": "1ca84134e6823d32",
+        "type": "ui_button",
+        "z": "192589d78ea9942d",
+        "name": "Calibrate",
+        "group": "87da3e5f0e2d01a5",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "label": "Calibrate XY",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "calibrate",
+        "payloadType": "str",
+        "topic": "/MCU/ACTIONS",
+        "topicType": "str",
+        "x": 1140,
+        "y": 600,
+        "wires": [
+            [
+                "16332113c7be818f",
+                "c7de5bfce1b4e3b5"
+            ]
+        ]
+    },
+    {
+        "id": "68d7f0d4b32c8735",
+        "type": "mqtt in",
+        "z": "192589d78ea9942d",
+        "name": "",
+        "topic": "/MCU/CALIBRATION",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f1316666f3b9f3cb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1300,
+        "y": 480,
+        "wires": [
+            [
+                "453c82b6b7fc53e5"
+            ]
+        ]
+    },
+    {
+        "id": "453c82b6b7fc53e5",
+        "type": "ui_template",
+        "z": "192589d78ea9942d",
+        "group": "87da3e5f0e2d01a5",
+        "name": "",
+        "order": 5,
+        "width": "6",
+        "height": "2",
+        "format": "<h1> Calibration status: </h1>\n<h3> {{ msg.payload }} </h3>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1540,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c7de5bfce1b4e3b5",
+        "type": "change",
+        "z": "192589d78ea9942d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "calibrating",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1320,
+        "y": 540,
+        "wires": [
+            [
+                "453c82b6b7fc53e5"
+            ]
+        ]
+    },
+    {
+        "id": "08a439020576897f",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 3",
+        "group": "2416bfd49b81569f",
+        "order": 0,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "136.4,45.5",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 260,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "00dc09cb3d075a74",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 4",
+        "group": "2416bfd49b81569f",
+        "order": 5,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "28.4,108.0",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 320,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "c0804e38cc68afdd",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 7",
+        "group": "2416bfd49b81569f",
+        "order": 2,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "7",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "28.4,170.5",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 500,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "4aecc881a04a6917",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 8",
+        "group": "2416bfd49b81569f",
+        "order": 3,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "8",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "82.4,170.5",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 560,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "3513e9ba8a7d61e8",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 9",
+        "group": "2416bfd49b81569f",
+        "order": 4,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "9",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "136.4,170.5",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 620,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "a23cae7376cbc579",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 5",
+        "group": "2416bfd49b81569f",
+        "order": 5,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "5",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "82.4,108.0",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "4fba2e38010410a8",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 6",
+        "group": "2416bfd49b81569f",
+        "order": 6,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "6",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "136.4,108.0",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 440,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "e766232ec12117e7",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 1",
+        "group": "2416bfd49b81569f",
+        "order": 7,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "<fony size =16>1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "28.4,45.5",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "284ee4593090d625",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "Plant 2",
+        "group": "2416bfd49b81569f",
+        "order": 11,
+        "width": "2",
+        "height": "2",
+        "passthru": false,
+        "label": "2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "82.4,45.5",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 360,
+        "y": 200,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "ddac7ea2715a6eea",
+        "type": "ui_button",
+        "z": "285d3877f62cdd03",
+        "name": "",
+        "group": "2416bfd49b81569f",
+        "order": 11,
+        "width": "0",
+        "height": "0",
+        "passthru": false,
+        "label": "Auto-Route",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "28.4,45.5,54.0,0.0,54.0,0.0,-108.0,62.5,54.0,0.0,54.0,0.0,-108.0,62.5,54.0,0.0,54.0,0.0",
+        "payloadType": "str",
+        "topic": "/MCU/AUTOROUTE",
+        "topicType": "str",
+        "x": 550,
+        "y": 160,
+        "wires": [
+            [
+                "8ee6962db4efb03c"
+            ]
+        ]
+    },
+    {
+        "id": "8ee6962db4efb03c",
+        "type": "mqtt out",
+        "z": "285d3877f62cdd03",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f1316666f3b9f3cb",
+        "x": 730,
+        "y": 380,
+        "wires": []
+    }
+]
